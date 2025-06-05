@@ -45,3 +45,40 @@ const chatButton = document.getElementById("chatButton");
     chatMessages.appendChild(msg);
     chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll para baixo
   }
+  document.getElementById("sendBtn").addEventListener("click", enviarPergunta);
+document.getElementById("chatInput").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") enviarPergunta();
+});
+
+function enviarPergunta() {
+  const input = document.getElementById("chatInput");
+  const pergunta = input.value.trim();
+  if (pergunta === "") return;
+
+  adicionarMensagem(pergunta, "user-msg");
+  input.value = "";
+
+  const resposta = gerarResposta(pergunta);
+  setTimeout(() => adicionarMensagem(resposta, "bot-msg"), 500);
+
+  setTimeout(() => {
+  adicionarMensagem(resposta, "bot-msg");
+  salvarConversa(pergunta, resposta);
+}, 500)
+}
+
+function gerarResposta(pergunta) {
+  const p = pergunta.toLowerCase();
+
+  if (p.includes("horário") || p.includes("hora")) {
+    return "Nosso horário de funcionamento é de segunda a sexta, das 08h às 18h.";
+  }
+  if (p.includes("endereço") || p.includes("local") || p.includes("onde fica")) {
+    return "Estamos localizados na Rua Exemplo, nº 123, Bairro Centro, Cidade/UF.";
+  }
+  if (p.includes("pedagógico") || p.includes("aula") || p.includes("curso")) {
+    return "Sobre assuntos pedagógicos, em breve vamos adicionar mais informações!";
+  }
+
+  return "Desculpe, não entendi sua pergunta. Por favor, reformule ou escolha uma das opções acima.";
+}
