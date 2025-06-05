@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style/style.css">
+  <title>Chat Inteligente</title>
+  
+</head>
+<body>
+
+<!-- Botão do chat -->
+<button id="chatButton">💬</button>
+
+<!-- Janela do chat -->
+<div id="chatWindow">
+  <div id="chatHeader">Atendimento Virtual</div>
+  <div id="chatMessages">
+    <p class="bot-msg">Olá! Como posso te ajudar? Escolha uma opção abaixo:</p>
+    <button class="chat-option" onclick="responder('horario')">📅 Horário</button>
+    <button class="chat-option" onclick="responder('local')">📍 Local</button>
+    <button class="chat-option" onclick="responder('pedagogico')">📘 Pedagógico</button>
+  </div>
+</div>
+
+<script src="./js/interação.js">
+</script>
+
+</body>
+</html>
